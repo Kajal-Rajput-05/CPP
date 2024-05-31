@@ -1,0 +1,587 @@
+/*
+//Que 1
+#include <iostream>
+using namespace std;
+
+void swapByValue(int Num1, int Num2) {
+    cout << "Before swapping (call by value):\n";
+    cout << "Num1 = " << Num1 << endl;
+    cout << "Num2 = " << Num2 << endl;
+
+    int temp = Num1;
+    Num1 = Num2;
+    Num2 = temp;
+
+    cout << "After swapping (call by value):\n";
+    cout << "Num1 = " << Num1 << endl;
+    cout << "Num2 = " << Num2 << endl;
+}
+
+void swapByAddress(int *Num1, int *Num2) {
+    cout << "Before swapping (call by address):\n";
+    cout << "Num1 = " << *Num1 << endl;
+    cout << "Num2 = " << *Num2 << endl;
+
+    int temp = *Num1;
+    *Num1 = *Num2;
+    *Num2 = temp;
+
+    cout << "After swapping (call by address):\n";
+    cout << "Num1 = " << *Num1 << endl;
+    cout << "Num2 = " << *Num2 << endl;
+}
+
+int main() {
+    int Num1 = 5;
+    int Num2 = 10;
+
+    cout << "Initial values:\n";
+    cout << "Num1 = " << Num1 << endl;
+    cout << "Num2 = " << Num2 << endl;
+    swapByValue(Num1, Num2);
+    cout << endl;
+    swapByAddress(&Num1, &Num2);
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 2
+#include <iostream>
+using namespace std;
+
+struct Rectangle {
+    double length;
+    double width;
+};
+
+double areaByValue(Rectangle rect) {
+    return rect.length * rect.width;
+}
+
+double areaByAddress(Rectangle *rect) {
+    return rect->length * rect->width;
+}
+
+int main() {
+    Rectangle myRectangle;
+    myRectangle.length = 5.0;
+    myRectangle.width = 3.0;
+
+    double areaVal = areaByValue(myRectangle);
+    cout << "Area calculated by value: " << areaVal << endl;
+
+    double areaAddr = areaByAddress(&myRectangle);
+    cout << "Area calculated by address: " << areaAddr << endl;
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 3
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+struct Person {
+    char* name;
+    int age;
+};
+
+int main() {
+    Person* personPtr = new Person;
+
+    cout << "Enter name: ";
+    char nameInput[100];
+    cin.getline(nameInput, 100);
+
+    personPtr->name = new char[strlen(nameInput) + 1];
+    strcpy(personPtr->name, nameInput);
+
+    cout << "Enter age: ";
+    cin >> personPtr->age;
+
+    cout << "Name: " << personPtr->name << endl;
+    cout << "Age: " << personPtr->age << endl;
+
+    delete[] personPtr->name;
+    delete personPtr;
+
+    return 0;
+}
+*/
+//------------------------------------
+/*
+//Que 4
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int main() {
+    int n;
+
+    cout << "Enter the number of elements: ";
+    cin >> n;
+
+    int* arr = (int*)malloc(n * sizeof(int));
+
+    if (arr == nullptr) {
+        cout << "Memory allocation failed." << endl;
+        return 1;
+    }
+
+    cout << "Enter " << n << " elements:" << endl;
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
+
+    cout << "Elements entered:" << endl;
+    for (int i = 0; i < n; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    free(arr);
+
+    return 0;
+}
+*/
+//---------------------------------------
+/*
+//Que 5
+#include <iostream>
+#include "Student.h"
+using namespace std;
+
+int main() {
+    Student student("Kajal", 12);
+    cout << "Initial Name: " << student.getName() << endl;
+    cout << "Initial Grade: " << student.getGrade() << endl;
+    student.setName("Kashmira");
+    student.setGrade(11);
+    cout << "Updated Name: " << student.getName() << endl;
+    cout << "Updated Grade: " << student.getGrade() << endl;
+
+    return 0;
+}
+*/
+//--------------------------------------
+/*
+//Que 6
+#include <iostream>
+using namespace std;
+
+extern int externVar;
+
+void autoEx() {
+    auto int autoVar = 10;
+    cout << "Auto variable: " << autoVar << endl;
+}
+
+void staticEx() {
+    static int staticVar = 20;
+    cout << "Static variable: " << staticVar << endl;
+    staticVar++;
+}
+
+void externEx() {
+    cout << "Extern variable: " << externVar << endl;
+}
+
+void registerEx() {
+    register int registerVar = 30;
+    cout << "Register variable: " << registerVar << endl;
+}
+
+int main() {
+    autoEx();
+    staticEx();
+    externEx();
+    registerEx();
+
+    return 0;
+}
+int externVar = 40;
+*/
+//-----------------------------------------
+/*
+//Que 7
+#include <iostream>
+using namespace std;
+int globalVar = 10;
+
+int main() {
+
+    int localVarMain = 20;
+    cout << "Inside main function:" <<endl;
+    cout << "globalVar = " << globalVar << endl;
+    cout << "localVarMain = " << localVarMain <<endl;
+    {
+        int blockVar = 30;
+        cout << "\nInside block scope:" << endl;
+        cout << "globalVar = " << globalVar << endl;
+
+        cout << "blockVar = " << blockVar << endl;
+
+        int globalVar = 40;
+        cout << "Redefining globalVar in block scope: " << globalVar << endl;
+    }
+    cout << "\nOutside block scope:" << endl;
+    cout << "globalVar = " << globalVar << endl;
+    cout << "localVarMain = " << localVarMain << endl;
+
+    return 0;
+}
+*/
+//--------------------------------------------------
+/*
+//Que 8
+#include <iostream>
+using namespace std;
+int main() {
+    int num;
+    cout << "Enter a number: ";
+    cin >> num;
+    cout << "You entered: " << num <<endl;
+    cerr << "This is an error message!" << endl;
+    clog << "This is a log message." <<endl;
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 9
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+    cout << fixed << setprecision(2);
+
+    double num = 123.456789;
+
+    cout << "Original number: " << num << endl;
+    cout << "With setw(10): " << setw(10) << num << endl;
+    cout << "With setw(10) and left alignment: " << left << setw(10) << num << endl;
+    cout << right;
+
+    return 0;
+}
+*/
+//------------------------------------
+/*
+//Que 10
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Animal {
+public:
+    string name;
+    int age;
+
+    void displayDetails() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age <<endl;
+    }
+};
+
+int main() {
+    Animal myAnimal;
+
+    myAnimal.name = "Tiger";
+    myAnimal.age = 5;
+
+    myAnimal.displayDetails();
+
+    return 0;
+}
+*/
+//-------------------------------------
+/*
+//Que 11
+#include <iostream>
+using namespace std;
+
+class EmptyClass {};
+
+int main() {
+    EmptyClass obj;
+    cout << "it can be instantiated" << endl;
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 12
+#include <iostream>
+using namespace std;
+
+class Example {
+private:
+    int value;
+
+public:
+    void setValue(int value) {
+        this->value = value;
+    }
+
+    void display() {
+        cout << "Value: " << value << endl;
+    }
+};
+
+int main() {
+    Example obj;
+    obj.setValue(42);
+    obj.display();
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 13
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+
+public:
+    Person() {
+        name = "";
+        age = 0;
+    }
+    string getName() {
+        return name;
+    }
+    void setName(string newName) {
+        name = newName;
+    }
+    int getAge() {
+        return age;
+    }
+    void setAge(int newAge) {
+        age = newAge;
+    }
+};
+
+int main() {
+    Person person;
+
+    person.setName("Kajal");
+    person.setAge(22);
+    cout << "Name: " << person.getName() << endl;
+    cout << "Age: " << person.getAge() << endl;
+
+    return 0;
+}
+*/
+//------------------------------------
+/*
+//Que 14
+#include <iostream>
+using namespace std;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+float add(float a, float b) {
+    return a + b;
+}
+
+int main() {
+    int sumint = add(5, 3);
+    cout << "Sum of integers: " << sumint << endl;
+    float sumfloat = add(3.5f, 2.3f);
+    cout << "Sum of floats: " << sumfloat << endl;
+
+    return 0;
+}
+*/
+//---------------------------------------
+/*
+//Que 15
+#include <iostream>
+using namespace std;
+
+void display(int value = 10) {
+    cout << "Value: " << value <<endl;
+}
+
+int main() {
+    cout << "Without Argument:" << endl;
+    display();
+    cout << "\With Argument:" << endl;
+    display(20);
+
+    return 0;
+}
+*/
+//--------------------------------------
+/*
+//Que 16
+#include <iostream>
+using namespace std;
+
+class Dog {
+public:
+    string name;
+
+    void bark() {
+        cout << name << " says: Bhoo!" << endl;
+    }
+};
+
+int main() {
+    Dog myDog;
+    myDog.name = "Sheru";
+    myDog.bark();
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 17
+#include <iostream>
+using namespace std;
+
+enum Color {
+    RED,
+    GREEN,
+    BLUE
+};
+
+void displayColor(Color color) {
+    switch (color) {
+        case RED:
+            cout << "Color: RED" << endl;
+            break;
+        case GREEN:
+            cout << "Color: GREEN" << endl;
+            break;
+        case BLUE:
+            cout << "Color: BLUE" << endl;
+            break;
+        default:
+            cout << "Unknown color" << endl;
+    }
+}
+
+int main() {
+    displayColor(RED);
+    displayColor(GREEN);
+    displayColor(BLUE);
+
+    return 0;
+}
+*/
+//--------------------------------------------------
+/*
+//Que 18
+#include <iostream>
+using namespace std;
+
+class Box {
+private:
+    double length;
+    double breadth;
+
+public:
+
+    Box() {
+        length = 0.0;
+        breadth = 0.0;
+    }
+
+    Box(double l, double b) {
+        length = l;
+        breadth = b;
+    }
+
+    Box(const Box &obj) {
+        length = obj.length;
+        breadth = obj.breadth;
+    }
+
+    void displayDimensions() {
+        cout << "Length: " << length << " units" << endl;
+        cout << "Breadth: " << breadth << " units" << endl;
+    }
+};
+
+int main() {
+    Box box1;
+    Box box2(5.0, 3.0);
+    Box box3 = box2;
+
+    cout << "Box 1 (Default constructor):" << endl;
+    box1.displayDimensions();
+    cout << endl;
+
+    cout << "Box 2 (Parameterized constructor):" << endl;
+    box2.displayDimensions();
+    cout << endl;
+
+    cout << "Box 3 (Copy constructor):" << endl;
+    box3.displayDimensions();
+    cout << endl;
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 19
+#include <iostream>
+using namespace std;
+
+struct Point {
+    int x;
+    int y;
+};
+
+int main() {
+    Point p1 = {3, 5};
+    cout << "Point coordinates: " << p1.x << ", " << p1.y << endl;
+    return 0;
+}
+
+//------------------------------------
+
+//Que 20
+#include <iostream>
+using namespace std;
+
+class Sample {
+private:
+    int a;
+    int b;
+
+public:
+    Sample(int a, int b) : a(a), b(b) {}
+    void display() {
+        cout << "Value of a : " << a << endl;
+        cout << "Value of b : " << b << endl;
+    }
+};
+
+int main() {
+    Sample obj(10, 20);
+    obj.display();
+
+    return 0;
+}
