@@ -1,0 +1,439 @@
+
+/*
+//Que 1
+#include <iostream>
+using namespace std;
+
+int main() {
+    int *intPtr;
+    double *doublePtr;
+    char *charPtr;
+    float *floatPtr;
+
+    intPtr = new int;
+    doublePtr = new double;
+    charPtr = new char;
+    floatPtr = new float;
+
+    *intPtr = 47;
+    *doublePtr = 4.475;
+    *charPtr = 'K';
+    *floatPtr = 2.9f;
+
+    cout << "Integer value : " << *intPtr << "\nAddress: " << intPtr << endl;
+    cout << "Double value  : " << *doublePtr << "\nAddress: " << doublePtr << endl;
+    cout << "Char value    : " << *charPtr << "\nAddress: " << static_cast<void*>(charPtr) << endl;
+    cout << "Float value   : " << *floatPtr << "\nAddress: " << floatPtr << endl;
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 2
+#include <iostream>
+using namespace std;
+int main() {
+    int *wildPtr;
+
+    int localVar = 10;
+    wildPtr = &localVar;
+
+    cout <<"------------Danger----------"<<endl;
+    cout << "Wild Pointer : " << *wildPtr << endl;
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 3
+#include <iostream>
+using namespace std;
+int main() {
+
+    int *ptr = new int;
+    *ptr = 47;
+    cout << "Value   : " << *ptr <<endl;
+    cout << "Address : " << &ptr <<endl;
+
+    return 0;
+}
+*/
+//------------------------------------
+/*
+//Que 4
+#include <iostream>
+using namespace std;
+
+void pptr(int *ptr) {
+    if (ptr != NULL) {
+        cout << "Pointer value: " << *ptr << endl;
+    } else {
+        cout << "Pointer is NULL " <<endl;
+    }
+}
+
+int main() {
+
+	int *ptr1 = NULL;
+	    int value = 42;
+	    int *ptr2 = &value;
+
+	    cout << "Ptr1 :" << std::endl;
+	    pptr(ptr1);
+	    cout << "Ptr2 :" << std::endl;
+	    pptr(ptr2);
+
+    return 0;
+}
+*/
+//---------------------------------------
+/*
+//Que 5
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int num1 = 47;
+    int* const ptr1 = &num1;
+    cout << "Value of Ptr1: " << *ptr1 << endl;
+
+    const int num2 = 48;
+    const int* ptr2 = &num2;
+    cout << "Value of ptr2: " << *ptr2 <<endl;
+
+    const int num3 = 49;
+    const int* const ptr3 = &num3;
+    cout << "Value of Ptr3: " << *ptr3 <<endl;
+
+    return 0;
+}
+*/
+//--------------------------------------
+/*
+//Que 6
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student {
+    string name;
+    int roll;
+    float marks[3];
+};
+
+void inistd(Student& student, const string& name, int rollNumber, float marks[]) {
+    student.name = name;
+    student.roll = rollNumber;
+    for (int i = 0; i < 3; ++i) {
+        student.marks[i] = marks[i];
+    }
+}
+
+float avg(const Student& student) {
+    float totalMarks = 0;
+    for (int i = 0; i < 3; ++i) {
+        totalMarks += student.marks[i];
+    }
+    return totalMarks / 3;
+}
+
+void display(const Student& student) {
+    cout << "Name     : " << student.name <<endl;
+    cout << "Roll No. : " << student.roll <<endl;
+    cout << "Marks    : ";
+    for (int i = 0; i < 3; ++i) {
+        cout << student.marks[i] << " ";
+    }
+    cout << std::endl;
+}
+
+int main() {
+    Student student1;
+
+    float marks[] = {98.7, 65.4, 43.2};
+    inistd(student1, "Kajal", 47, marks);
+
+    display(student1);
+
+    float averageMarks = avg(student1);
+    cout << "\nAverage Marks : " << averageMarks << endl;
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 7
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Student {
+    string name;
+    int marks[5];
+    float average;
+    char grade;
+};
+
+float calculateAverage(const int marks[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; ++i) {
+        sum += marks[i];
+    }
+    return static_cast<float>(sum) / size;
+}
+
+char calculateGrade(float average) {
+    if (average >= 90) return 'A';
+    else if (average >= 80) return 'B';
+    else if (average >= 70) return 'C';
+    else if (average >= 60) return 'D';
+    else return 'F';
+}
+
+int main() {
+    int numStudents;
+    cout << "Enter the number of students: ";
+    cin >> numStudents;
+
+    Student* students = new Student[numStudents];
+
+    for (int i = 0; i < numStudents; ++i) {
+        cout << "Enter name of student " << i + 1 << ": ";
+        cin >> students[i].name;
+        cout << "Enter marks for 5 subjects: ";
+        for (int j = 0; j < 5; ++j) {
+            cin >> students[i].marks[j];
+        }
+        students[i].average = calculateAverage(students[i].marks, 5);
+
+        students[i].grade = calculateGrade(students[i].average);
+    }
+
+    cout << "\n\n";
+    cout << "Student Details:\n";
+    for (int i = 0; i < numStudents; ++i) {
+        cout << "Name: " << students[i].name << endl;
+        cout << "Average Marks: " << students[i].average << endl;
+        cout << "Grade: " << students[i].grade << endl << endl;
+    }
+
+    delete[] students;
+
+    return 0;
+}
+*/
+//--------------------------------------------------
+/*
+//Que 8
+#include <iostream>
+using namespace std;
+
+namespace Namespace1 {
+    int Num = 10;
+    void display() {
+        cout << "Namespace1 called" << endl;
+    }
+}
+
+namespace Namespace2 {
+    int Num = 20;
+    void display() {
+        cout << "Namespace2 called" << endl;
+    }
+}
+
+namespace N1 = Namespace1;
+using namespace Namespace2;
+
+int main() {
+
+    cout << "Namespace1 num: " << N1::Num <<endl;
+    cout << "Namespace2 num: " << Namespace2::Num <<endl;
+
+    Namespace1::display();
+    Namespace2::display();
+
+    N1::display();
+    display();
+
+    return 0;
+}
+*/
+//-----------------------------------------
+/*
+//Que 9
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+struct Employee {
+    string name;
+    int ID;
+    float salary;
+};
+
+void addEmployee(vector<Employee>& employees) {
+    Employee newEmployee;
+    cout << "Name   : ";
+    cin >> newEmployee.name;
+    cout << "ID     : ";
+    cin >> newEmployee.ID;
+    cout << "Salary : ";
+    cin >> newEmployee.salary;
+
+    employees.push_back(newEmployee);
+    cout << "Employee added successfully!" << endl;
+}
+
+void displayEmployees(const vector<Employee>& employees) {
+    cout << "Employee Details:" << endl;
+    for (const auto& employee : employees) {
+        cout << "Name: " << employee.name << ", ";
+        cout << "ID: " << employee.ID << ", ";
+        cout << "Salary: " << employee.salary << endl;
+    }
+}
+
+int main() {
+    vector<Employee> employees;
+
+    char choice;
+    do {
+
+        cout << "1. Add new employee\n";
+        cout << "2. Display all employees\n";
+        cout << "3. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case '1':
+                addEmployee(employees);
+                break;
+            case '2':
+                displayEmployees(employees);
+                break;
+            case '3':
+                cout << "Exiting program...\n";
+                break;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != '3');
+
+    return 0;
+}
+
+*/
+//------------------------------------
+
+//Que 10
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Book {
+    string title;
+    string author;
+    int id;
+    float price;
+};
+
+void addBook(Book inventory[], int& count, const int MAX_BOOKS) {
+    if (count >= MAX_BOOKS) {
+        cout << "Inventory full. Cannot add more books.\n";
+        return;
+    }
+
+    cout << "Enter title: ";
+    cin >> inventory[count].title;
+    cout << "Enter author: ";
+    cin >> inventory[count].author;
+    cout << "Enter ID: ";
+    cin >> inventory[count].id;
+    cout << "Enter price: ";
+    cin >> inventory[count].price;
+
+    count++;
+    cout << "Book added successfully.\n";
+}
+
+void displayInventory(const Book inventory[], const int count) {
+    cout << "Inventory Details:\n";
+    cout << "============================\n";
+    for (int i = 0; i < count; ++i) {
+        cout << "Title  : " << inventory[i].title << endl;
+        cout << "Author : " << inventory[i].author << endl;
+        cout << "ID     : " << inventory[i].id << endl;
+        cout << "Price  : $" << inventory[i].price << endl;
+        cout << "-----------------------------\n";
+    }
+}
+
+void searchBookById(const Book inventory[], const int count, int id) {
+    bool found = false;
+    for (int i = 0; i < count; ++i) {
+        if (inventory[i].id == id) {
+            cout << "Book Found!\n";
+            cout << "Title: " << inventory[i].title << endl;
+            cout << "Author: " << inventory[i].author << endl;
+            cout << "ID: " << inventory[i].id << endl;
+            cout << "Price: $" << inventory[i].price << endl;
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "Book with ID " << id << " not found.\n";
+    }
+}
+
+int main() {
+    const int MAX_BOOKS = 100; // Maximum number of books in the inventory
+    Book inventory[MAX_BOOKS];
+    int count = 0; // Number of books currently in the inventory
+    int choice;
+
+    do {
+        cout << "\nBook Inventory Management System\n";
+        cout << "1. Add a new book\n";
+        cout << "2. Display all books\n";
+        cout << "3. Search for a book by ID\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                addBook(inventory, count, MAX_BOOKS);
+                break;
+            case 2:
+                displayInventory(inventory, count);
+                break;
+            case 3:
+                int searchId;
+                cout << "Enter ID to search: ";
+                cin >> searchId;
+                searchBookById(inventory, count, searchId);
+                break;
+            case 4:
+                cout << "Exiting...\n";
+                break;
+            default:
+                cout << "Invalid choice. Please enter a number between 1 and 4.\n";
+        }
+
+    } while(choice != 4);
+
+    return 0;
+}
+
+//-------------------------------------
